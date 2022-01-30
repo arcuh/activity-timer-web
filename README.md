@@ -1,1 +1,3 @@
-# acitivity-timer-web
+# activity-timer-web
+
+A website for timing activities!
