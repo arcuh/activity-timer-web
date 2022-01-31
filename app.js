@@ -80,9 +80,7 @@ function toggleActivitySW(event) {
 }
 
 function resetActivitySW(event) {
-    const item = event.target
-
-    const timer = item.previousSibling.previousSibling
+    const timer = event.target.parentElement.children[1]
 
     timer.stopwatch.reset()
 }
@@ -141,6 +139,7 @@ class Timer {
         }
 
         this.startTime = 0;
+        this.updateDiv()
     }
 
     getTime() {

@@ -2,93 +2,106 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
-    background-image: linear-gradient(120deg, rgb(116, 24, 202), rgb(166, 102, 226));
-    background-attachment: fixed;
-    color:rgb(255, 255, 255);
     font-family: 'Montserrat', sans-serif;
 }
 
+body {
+    margin: 12px;
+    background: white;
+    color: black;
+}
+
 header {
-    margin: 64px 20px;
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-size: 32px;
+    margin: 32px;
+    text-align: center;
+}
+
+
+button {
+    cursor: pointer;
+}
+
+i {
+    pointer-events: none;
 }
 
 form {
-    margin: 32px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 form input, form button {
+    margin-top: 20px;
+    margin-bottom: 20px;
     display: inline-block;
-    padding: 10px 15px;
-    font-size: 20px;
-    border-radius: 0;
+    padding: 10px;
+    font-size: 25px;
     -webkit-appearance: none;
 
-    border: none;
+    border: 2px solid black;
     outline: none;
-    font-family: 'Montserrat', sans-serif;
+}
+    
+form input {
+    padding-left: 15px;
+    padding-right: 0;
+    border-style: solid none solid solid;
+    border-radius: 25px 0 0 25px;
+    width: 40%;
 }
 
 form button {
-    background-color: white;
+    padding-right: 15px;
+    border-style: solid solid solid none;
+    border-radius: 0 25px 25px 0;
+    background: white;
     color: black;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
-form button:hover {
-    background: rgb(116, 24, 202);
-    color: white;
-}
-
 .activity-container {
-    display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+}
+
+.activity-title {
+    text-align: center;
 }
 
 .activity-list {
-    min-width: 30%;
     list-style: none;
+    text-align: center;
+    width: 100%;
 }
 
 .activity {
-    padding: 12px 16px;
-    margin: 10px 10px;
     display: flex;
-    background-color: white;
-    font-size: 16px;
-    color: black;
-    justify-content: space-between;
     align-items: center;
+    background: white;
+    border: 2px solid black;
+    border-radius: 25px;
+    margin: 10px auto;
+    padding: 10px;
+    width: 40%;
+    font-size: 20px;
 }
 
-.activity li, .timer {
+.activity li {
+    flex: 1;
+    word-break: break-all;
+}
+
+.timer {
     flex: 1;
 }
-
-.toggle-btn, .reset-btn, .delete-btn {
-    font-size: 16px;
+.activity button {
     background: none;
     color: black;
     border: none;
     flex: 0.35;
-    cursor: pointer;
-}
-
-.toggle-btn:hover, .reset-btn:hover, .delete-btn:hover {
-    color: rgb(99, 97, 97);
-    transition: all 0.3s ease;
-}
-i {
-    pointer-events: none;
+    font-size: 20px;
 }
