@@ -88,6 +88,7 @@ function resetActivitySW(event) {
 }
 
 function removeActivity(event) {
+    clearInterval(event.target.parentElement.children[1].stopwatch.interval)
     event.target.parentElement.remove()
     removeLocalActivity(event.target)
 }
@@ -116,7 +117,6 @@ class Timer {
     }
 
     toggle() {
-        console.log("Test")
         if (!this.isRunning) {
             this.isRunning = true;
             this.timer.nextSibling.children[0].setAttribute("class", "fas fa-pause")
@@ -157,9 +157,9 @@ class Timer {
 
     updateTime() {
         this.interval = setInterval(() => {
-            this.updateDiv();
             this.saveTime()
-        }, 100)
+            this.updateDiv();
+        }, 1000)
     }
 
     updateDiv() {
@@ -183,7 +183,7 @@ class Timer {
     }
 
     saveTime() {
-        updateLocalActivityTime(this.timer, this.isRunning, this.overallTime)
+        updateLocalActivityTime(this.timer, this.isRunning, this.getTime())
     }
 
     getStatus() {
