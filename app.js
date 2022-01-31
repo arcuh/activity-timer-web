@@ -40,21 +40,21 @@ function addActivity(event) {
 
     // Stopwatch toggle button
     const toggleButton = document.createElement("button")
-    toggleButton.innerText = "Start"
+    toggleButton.innerHTML = '<i class="fa fa-play"></i>'
     toggleButton.classList.add("toggle-btn")
     toggleButton.addEventListener("click", toggleActivitySW)
     activityDiv.appendChild(toggleButton)
 
     // Reset stopwatch button
     const resetButton = document.createElement("button")
-    resetButton.innerText = "Reset"
+    resetButton.innerHTML = '<i class="fas fa-redo"></i>'
     resetButton.classList.add("reset-btn")
     resetButton.addEventListener("click", resetActivitySW)
     activityDiv.appendChild(resetButton)
 
     // Delete activity button
     const deleteButton = document.createElement("button")
-    deleteButton.innerText = "Delete"
+    deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>'
     deleteButton.classList.add("delete-btn")
     deleteButton.addEventListener("click", removeActivity)
     activityDiv.appendChild(deleteButton)
@@ -84,6 +84,7 @@ function resetActivitySW(event) {
 }
 
 function removeActivity(event) {
+    console.log(event.target)
     event.target.parentElement.remove()
     removeLocalActivity(event.target)
 }
@@ -99,12 +100,12 @@ function Stopwatch(element, hr, min, sec) {
     this.toggleClock = () => {
         if (this.stoptime) {
             this.stoptime = false
-            this.timer.parentElement.children[2].innerText = "Pause"
+            this.timer.nextSibling.children[0].setAttribute("class", "fas fa-pause")
 
             this.clockCycle()
         } else {
             this.stoptime = true
-            this.timer.parentElement.children[2].innerText = "Start"
+            this.timer.nextSibling.children[0].setAttribute("class", "fa fa-play")
             clearTimeout(this.timeout)
         }
     }
@@ -203,21 +204,21 @@ function getActivities() {
 
         // Stopwatch toggle button
         const toggleButton = document.createElement("button")
-        toggleButton.innerText = "Start"
+        toggleButton.innerHTML = '<i class="fa fa-play"></i>'
         toggleButton.classList.add("toggle-btn")
         toggleButton.addEventListener("click", toggleActivitySW)
         activityDiv.appendChild(toggleButton)
 
         // Reset stopwatch button
         const resetButton = document.createElement("button")
-        resetButton.innerText = "Reset"
+        resetButton.innerHTML = '<i class="fas fa-redo"></i>'
         resetButton.classList.add("reset-btn")
         resetButton.addEventListener("click", resetActivitySW)
         activityDiv.appendChild(resetButton)
 
         // Delete activity button
         const deleteButton = document.createElement("button")
-        deleteButton.innerText = "Delete"
+        deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>'
         deleteButton.classList.add("delete-btn")
         deleteButton.addEventListener("click", removeActivity)
         activityDiv.appendChild(deleteButton)

@@ -3,18 +3,33 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-
+        <script src="https://kit.fontawesome.com/e053b155e9.js" crossorigin="anonymous"></script>
+        <link href="styles.css" rel="stylesheet" type="text/css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
         <title>Activity Timer</title>
     </head>
 
     <body>
-        <form>
-            <input type="text" class="activity-input">
-            <button type="submit" class="activity-button">Add</button>
-        </form>
+        <header>
+            <h1>Activity Timer Web</h1>
+        </header>
 
-        <ul class="activity-list">
-        </ul>
+        <div class="input-container">
+            <form>
+                <input type="text" class="activity-input" placeholder="Enter your activity">
+                <button type="submit" class="activity-button">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </form>
+        </div>
+
+        <div class="activity-container">
+            <ul class="activity-list">
+
+            </ul>
+        </div>
         <script src="./app.js"></script>
     </body>
 </html>

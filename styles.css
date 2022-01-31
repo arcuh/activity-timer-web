@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: linear-gradient(120deg, rgb(116, 24, 202), rgb(166, 102, 226));
+    background-attachment: fixed;
+    color:rgb(255, 255, 255);
+    font-family: 'Montserrat', sans-serif;
+}
+
+header {
+    margin: 64px 20px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    margin: 32px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form input, form button {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 20px;
+    border-radius: 0;
+    -webkit-appearance: none;
+
+    border: none;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+}
+
+form button {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+form button:hover {
+    background: rgb(116, 24, 202);
+    color: white;
+}
+
+.activity-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.activity-list {
+    min-width: 20%;
+    list-style: none;
+}
+
+.activity {
+    padding: 12px 16px;
+    margin: 10px 10px;
+    display: flex;
+    background-color: white;
+    font-size: 16px;
+    color: black;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.activity li, .timer {
+    flex: 1;
+}
+
+.toggle-btn, .reset-btn, .delete-btn {
+    font-size: 16px;
+    background-color: none;
+    border: none;
+    flex: 0.25;
+    cursor: pointer;
+}
+i {
+    pointer-events: none;
+}
