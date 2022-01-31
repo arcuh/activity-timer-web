@@ -57,7 +57,7 @@ form button:hover {
 }
 
 .activity-list {
-    min-width: 20%;
+    min-width: 30%;
     list-style: none;
 }
 
@@ -78,10 +78,16 @@ form button:hover {
 
 .toggle-btn, .reset-btn, .delete-btn {
     font-size: 16px;
-    background-color: none;
+    background: none;
+    color: black;
     border: none;
-    flex: 0.25;
+    flex: 0.35;
     cursor: pointer;
+}
+
+.toggle-btn:hover, .reset-btn:hover, .delete-btn:hover {
+    color: rgb(99, 97, 97);
+    transition: all 0.3s ease;
 }
 i {
     pointer-events: none;
