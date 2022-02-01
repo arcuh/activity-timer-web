@@ -12,22 +12,25 @@
     </head>
 
     <body>
-        <header>
-            <h1>Activity Timer Web</h1>
-        </header>
+        <div id="activity-page">
+            <header>
+                <h1>Activity Timer Web</h1>
+            </header>
 
-        <div class="input-container">
-            <form>
-                <input type="text" class="activity-input" placeholder="Enter your activity">
-                <button type="submit" class="activity-button">
-                    <i class="fa fa-plus"></i>
-                </button>
-            </form>
-        </div>
+            <div class="input-container">
+                <form>
+                    <input type="text" id="activity-input" placeholder="Enter your activity">
+                    <button type="submit" id="activity-button">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </form>
+            </div>
 
-        <div class="activity-container">
-            <h2 class="activity-title">Activities</h2>
-            <ul class="activity-list"></ul>
+            <div id="activity-container">
+                <h2 id="activity-title">Activities</h2>
+                <ul id="activity-list">
+                </ul>
+            </div>
         </div>
 
         <script src="./app.js"></script>
