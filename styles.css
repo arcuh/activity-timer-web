@@ -84,6 +84,8 @@ form {
 }
 
 .activity {
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
     display: flex;
     align-items: center;
     background: white;
@@ -118,10 +120,12 @@ form {
 }
 
 .activity button:hover {
-    color: rgb(66, 66, 66);
+    color: rgb(121, 121, 121);
 }
 
-.overlay{
+.overlay {
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
     background-color: rgb(0, 0, 0, 0.5);
     position: fixed;
     width: 100%;
@@ -187,4 +191,12 @@ form {
     color: black;
     cursor: pointer;
     transition: 0.3s ease;
+}
+
+.in {
+    opacity: 1;
+}
+
+.out {
+    opacity: 0;
 }

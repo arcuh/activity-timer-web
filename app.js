@@ -8,6 +8,7 @@ const activityList = document.querySelector("#activity-list")
 document.addEventListener("DOMContentLoaded", getActivities)
 activityButton.addEventListener("click", addActivity)
 
+
 //Functions
 function addActivity(event) {
     event.preventDefault()
@@ -53,7 +54,7 @@ function addActivity(event) {
     const stopwatchDiv = document.createElement("div")
     stopwatchDiv.innerText = "00:00:00"
     stopwatchDiv.classList.add("timer")
-    stopwatchDiv.stopwatch = new Timer(stopwatchDiv, false, 0)
+    stopwatchDiv.stopwatch = new Timer(stopwatchDiv, false, 0, 0)
     activityDiv.appendChild(stopwatchDiv)
 
     // Stopwatch toggle button
@@ -82,7 +83,8 @@ function addActivity(event) {
 
 
     //Adding the div to the activity list
-    activityList.appendChild(activityDiv)
+    activityList.appendChild(activityDiv).focus()
+    activityDiv.classList.add("in")
 
     //Resets input
     activityInput.value = ""
@@ -102,7 +104,7 @@ function showRenamePrompt(event) {
 
     //Background dark overlay
     const overlay = document.createElement("div")
-    overlay.classList.add("overlay")
+    overlay.classList.add("overlay") 
 
     //Container for rename elements
     const renameDiv = document.createElement("div")
@@ -129,6 +131,7 @@ function showRenamePrompt(event) {
     textInput.setAttribute("type", "text")
     textInput.setAttribute("id", "rename-input")
     textInput.setAttribute("placeholder", "Enter new activity name")
+    textInput.setAttribute("value", activity.innerText)
 
     const saveButton = document.createElement("button")
     saveButton.innerHTML = '<i class="fas fa-check"></i>'
@@ -144,18 +147,33 @@ function showRenamePrompt(event) {
 
     overlay.appendChild(renameDiv)
     overlay.addEventListener("click", deleteOverlay)
+    overlay.addEventListener("keydown", (event) => {
+        if (event.key == "Escape") {
+            overlay.remove()
+        }
+    })
 
-    activityPage.appendChild(overlay)
+    activityPage.appendChild(overlay).focus()
+    overlay.classList.add("in")
+
+    textInput.select()
 }
 
 function renameActivity(event) {
     event.preventDefault()
-    const item = event.target
-    const newName = document.getElementById("rename-input").value
 
+    const item = event.target
+
+    let activities = localActivityInit()
+    let activityName = item.activity.innerText
+
+    let newName = document.getElementById("rename-input").value
     if (!newName) return
 
-    let activityName = item.activity.innerText
+    //If there is already a duplicate name
+    if (activities.find((element) => { return element.name === newName && element.name != activityName}) != undefined) {
+        newName = newName + " copy"
+    }
 
     item.activity.innerText = newName
 
@@ -172,26 +190,25 @@ function resetActivitySW(event) {
 
 function removeActivity(event) {
     clearInterval(event.target.parentElement.children[1].stopwatch.interval)
-    event.target.parentElement.remove()
+    event.target.parentElement.classList.add("out")
+    setTimeout(() => { event.target.parentElement.remove()}, 600)
     removeLocalActivity(event.target)
 }
 
 function deleteOverlay(event) {
-    var item = event.target
+    let item = event.target
     if (!item) item = event
     if (item.classList[0] === "overlay") item.remove()
 }
 
 //TIMER CLASS AND LOGIC
 class Timer {
-    constructor (element, isRunning, overallTime) {
+    constructor (element, isRunning, overallTime, startTime) {
         this.timer = element;
         this.isRunning = isRunning;
-        this.startTime = 0;
+        this.startTime = startTime;
         this.overallTime = overallTime;
         this.interval = null;
-
-        if (overallTime > 0 || this.isRunning) this.startTime = Date.now()
 
         this.updateDiv()
         if (this.isRunning) {
@@ -284,7 +301,7 @@ class Timer {
     }
 
     saveTime() {
-        updateLocalActivityTime(this.timer, this.isRunning, this.getTime())
+        updateLocalActivityTime(this.timer, this.isRunning, this.getTime(), Date.now())
     }
 
     getIcon() {
@@ -315,7 +332,7 @@ function localActivityInit() {
 function saveLocalActivities(activity) {
     let activities = localActivityInit()
 
-    activities.push({"name": activity, "isRunning": false, "overallTime": 0})
+    activities.push({"name": activity, "isRunning": false, "overallTime": 0, "startTime": 0})
     localStorage.setItem("activities", JSON.stringify(activities))
 }
 
@@ -339,13 +356,14 @@ function updateLocalActivityName(activityName, newName) {
 }
 
 //Update activities (isRunning, overallTime) in local storage
-function updateLocalActivityTime (timer, isRunning, overallTime) {
+function updateLocalActivityTime (timer, isRunning, overallTime, startTime) {
     let activities = localActivityInit()
 
     let activity = activities.find((element) => { return element.name === timer.parentElement.children[0].children[0].innerText })
 
     activity.isRunning = isRunning
     activity.overallTime = overallTime
+    activity.startTime = startTime
 
     localStorage.setItem("activities", JSON.stringify(activities))
 }
@@ -382,7 +400,7 @@ function getActivities() {
         const stopwatchDiv = document.createElement("div")
         stopwatchDiv.innerText = "00:00:00"
         stopwatchDiv.classList.add("timer")
-        stopwatchDiv.stopwatch = new Timer(stopwatchDiv, element.isRunning, element.overallTime)
+        stopwatchDiv.stopwatch = new Timer(stopwatchDiv, element.isRunning, element.overallTime, element.startTime)
         activityDiv.appendChild(stopwatchDiv)
 
 
@@ -414,7 +432,8 @@ function getActivities() {
 
 
         //Adding the div to the activity list
-        activityList.appendChild(activityDiv)
+        activityList.appendChild(activityDiv).focus()
+        activityDiv.classList.add("in")
 
         //Resets input
         activityInput.value = ""
