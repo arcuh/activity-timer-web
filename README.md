@@ -11,3 +11,4 @@ Sorry for the lack of comments, I don't do projects often.
 Features currently available:
 1. Add and/or delete activity
 2. Start, pause, and reset the timer for each activity
+3. Rename activity
